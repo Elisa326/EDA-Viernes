@@ -1,0 +1,11 @@
+public class Tarea01{
+  public static void main(String[] args){
+        try(){
+        
+        Scanner lec = new Scanner(System.in);
+        }
+        catch(Exception e){
+        }
+   }
+}
+        
