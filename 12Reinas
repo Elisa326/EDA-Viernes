@@ -1,0 +1,95 @@
+
+def posDeReinas( p, disp, k,n, c, matSol):
+    if k>n :
+        m = 1
+        posible = True
+        comp1 = False
+        comp2 = False
+        while (posible and m < n):
+            h = m+1
+            while(posible and h <= n):
+                if(p[h] - h ==p[m] - m or p[h] + h ==p[m] + m):
+                   posible = False
+                h = h+1
+            m = m+1
+            e = 0
+        
+        if posible:
+            while e <= c[0] and not comp1 and not comp2:
+                comp = matSol[e]
+                ref = reflexion(comp,8)
+                comp1 = compara(p,comp )
+                comp2 = compara(p,ref)
+                e = e+1
+                
+            if not comp1 and not comp2 and c[0] < 12:
+                for k in range (1,9):
+                    matSol[c[0]][k] = p[k]
+                c[0] = c[0] + 1
+                print("Solución", str(c[0]))
+                print(p[1:])
+        
+    else:
+        for w in range (1,n+1):
+            if disp[w] == 1:
+                    disp[w] = 0
+                    p[k]=w
+                    posDeReinas(p,disp,k+1, n,c, matSol)
+                    disp[w]=1
+def reina(n):
+    p=[0]*(n+1)
+    d=[1]*(n+1)
+    c = [0]
+    matSol = [[0] * 9 for i in range (35)]
+    posDeReinas(p,d,1,n,c, matSol)
+    
+
+
+def reflexion(p,n):
+    reflexion = [0] * (n + 1 )
+    for i in range (1, n + 1):
+        reflexion[i] = p[9 - i];
+    return reflexion;
+
+
+      
+def compara(perm, comp):
+    
+     nuevo1 = [0]*9
+     nuevo2 = [0]*9
+     nuevo3 = [0]*9
+     nuevo4 = [0]*9
+
+     if( comp[1] == 0):
+         return False
+     
+     if(igua(perm,comp)):
+         return True
+     for i in range(1,9):
+         nuevo1[9-comp[i]] = i
+     if(igua(perm, nuevo1)):
+         return True
+     for i in range(1,9):
+         nuevo2[9-nuevo1[i]] = i
+     if(igua(perm, nuevo2)):
+         return True
+     for i in range(1,9):
+         nuevo3[9-nuevo2[i]] = i
+     if(igua(perm, nuevo3)):
+         return True
+     for i in range(1,9):
+         nuevo4[9-nuevo3[i]] = i
+     if(igua(perm, nuevo4)):
+         return True
+     return False
+
+
+    
+def igua(perm, otro):
+    i = 1
+    while(i<8 and perm[i] == otro[i]):
+        i = i+1
+    if(i == 8 and perm[7] == otro[7]):
+        return True
+    else:
+        return False
