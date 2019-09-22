@@ -1,0 +1,32 @@
+class Conta:
+    def __init__(self,empresa):
+        self.name = empresa
+    def __str__(self):
+        return 'Choro al invocar el método String'
+    def altaCta(self,numCta, nombreCta, natCta):
+        pass
+#==============Programa Principal ================
+conta = Conta('MiEmpre S.A.')
+
+conta.altaCta(100100,'Bancos','D')
+conta.altaCta(100100,'Clientes','D')
+conta.altaCta(100100,'Inventario','D')
+conta.altaCta(100100,'Proveedores','A')
+conta.altaCta(100100,'Kapital','A')
+conta.altaCta(100100,'Ventas','A')
+conta.altaCta(100100,'Costo de lo Vendido','D')
+
+print(conta)
+
+#===================================
+#
+#Poliza poliza1(‘30/sep/2019’,”Constitución de la Empresa S.A.”)
+#poliza1.abono(300000,10000)
+#poliza1.cargo(100100,10000)
+#
+#conta.registra(poliza1)
+#
+#print(conta)
+
+#========================
+
