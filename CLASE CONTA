@@ -1,32 +1,67 @@
-class Conta:
-    def __init__(self,empresa):
-        self.name = empresa
-    def __str__(self):
-        return 'Choro al invocar el método String'
-    def altaCta(self,numCta, nombreCta, natCta):
-        pass
-#==============Programa Principal ================
-conta = Conta('MiEmpre S.A.')
 
-conta.altaCta(100100,'Bancos','D')
-conta.altaCta(100100,'Clientes','D')
-conta.altaCta(100100,'Inventario','D')
-conta.altaCta(100100,'Proveedores','A')
-conta.altaCta(100100,'Kapital','A')
-conta.altaCta(100100,'Ventas','A')
-conta.altaCta(100100,'Costo de lo Vendido','D')
+#=================================Clase Conta==================================================
+class Conta:
+    polizas = []
+    cantpolizas = 0;
+    def __init__(self, empresa):
+        self.name = empresa
+
+    def __str__(self):
+        return 'webos no hay String-Conta'
+    
+    def altaCta(self, numCta, nombreCta, natCta):
+        pass
+
+    def registra(self, pCon):
+        polizas[cantpolizas] = pCon
+        cantpolizas = cantpolizas+1
+#=================================Clase Poliza================================================
+class Poliza:
+    cod = 1000000
+    def __init__(self, fecha, nombre):
+        self.name = nombre
+        self.date = fecha
+        self.code = cod
+        cod = cod +1
+
+    def abono(numCta, cantAb):
+        pass
+    def cargo(numCta, cantCar):
+        pass
+
+
+#=============================Clase ParteContable===============================================
+class ParteContable:       
+    def __init__(self, nombre, num):
+        self.name = nombre
+        self.code = num
+    def __str__(self):
+        return 'Aquí va la parte contable'
+
+#=================Programa principal========
+conta = Conta('MiEmpre S.A.')
+pCon = ParteContable('Activo', 1)
+pCon = ParteContable('Pasivo', 2)
+pCon = ParteContable('Capital social', 3)
+pCon = ParteContable('Ingreso', 4)
+pCon = ParteContable('Egreso', 5)
+conta.altaCta(100000,'Bancos','D')
+conta.altaCta(100001,'Clientes','D')
+conta.altaCta(100002,'Inventario','D')
+conta.altaCta(100003,'Proveedores','A')
+conta.altaCta(100004,'Kapital','A')
+conta.altaCta(100005,'Ventas','A')
+conta.altaCta(100006,'Costo de lo vendido','A')
 
 print(conta)
 
-#===================================
-#
-#Poliza poliza1(‘30/sep/2019’,”Constitución de la Empresa S.A.”)
-#poliza1.abono(300000,10000)
-#poliza1.cargo(100100,10000)
-#
-#conta.registra(poliza1)
-#
-#print(conta)
+poliza1 = Poliza('30/sep/2019','Constitución de la Empresa S.A.')
 
-#========================
+poliza1.abono(100001,10000)
+poliza1.cargo(100005,10000)
 
+conta.registra(poliza1)
+
+print(conta)
+
+# ================Fin del Script de prueba===============
