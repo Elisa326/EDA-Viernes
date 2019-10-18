@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Oct 18 09:20:06 2019
+
+@author: eespinosru
+"""
+
 
 # -*- coding: utf-8 -*-
 """
@@ -86,12 +93,10 @@ class Contabilidad:
            strRes += str(x)
        return strRes
    def cierre(self, poliza):
-       self.altaCta(300100, "Resultado ejercicio", "A")
-       ingCant = self.listaPartes[4].saldo().monto;
-       egCant = self.listaPartes[5].saldoSolo();
-       poliza.cargo (400100,ingCant)
-       poliza.abono(500100,egCant)
-       poliza.abono(300100,ingCant - egCant)
+       self.altaCta(300100, "Resultado Ejercicio A", "A")
+       self.listaPartes[4].cierreCT(poliza)
+               
+       self.listaPartes[5].cierreCT(poliza)
        self.registraPoliza(poliza)
    
 # ============================================================================  
@@ -167,7 +172,17 @@ class ParteContable:
            strRes += str(cta)
        strRes += ' ' + self.impSaldo()    
        return strRes    
-
+    def cierreCT(self, poliza):
+        for cta in self.colCtas.values():
+            if cta.nat == "D":
+                sdo = cta.saldo().monto
+                poliza.abono(cta.num, sdo)
+                poliza.cargo(300100,sdo )
+            else:
+                sdo = cta.saldo().monto
+                poliza.cargo(cta.num, sdo)
+                poliza.abono(300100,sdo )
+        return poliza
 # ============================================================================  
 # ================================ CtaT ======================================
 # ============================================================================    
@@ -322,3 +337,4 @@ conta.cierre(pol_Cierre)
 print(conta)
 
 print( conta.impBalance())
+print(pol_Cierre)
